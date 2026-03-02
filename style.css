@@ -1,0 +1,301 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0a0e27;
+    color: #00ff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* Fondo Matrix */
+.matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: -1;
+    animation: matrix-move 20s linear infinite;
+}
+
+@keyframes matrix-move {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+/* Contenedor Login */
+.login-container {
+    background: rgba(15, 20, 50, 0.95);
+    border: 2px solid #00ff00;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 0.5s ease-in;
+    z-index: 10;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    text-shadow: 0 0 10px #00ff00,
+             0 0 20px #00ff00,
+             0 0 40px #00ff00;
+    letter-spacing: 2px;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-container input {
+    padding: 12px;
+    border: 1px solid #00ff00;
+    background: rgba(0, 255, 0, 0.05);
+    color: #00ff00;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.login-container input:focus {
+    outline: none;
+    border-color: #00ff80;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.login-container button {
+    padding: 12px;
+    background: linear-gradient(135deg, #00ff00, #00cc00);
+    border: none;
+    color: #000;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.login-container button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 255, 0, 0.4);
+    background: linear-gradient(135deg, #00ff80, #00ff00);
+}
+
+.login-container button:active {
+    transform: translateY(0);
+}
+
+/* Errores */
+.error {
+    color: #ff3333;
+    font-size: 12px;
+    height: 18px;
+    display: block;
+    margin-top: -8px;
+}
+
+/* Panel Principal */
+.panel {
+    background: rgba(15, 20, 50, 0.95);
+    border: 2px solid #00ff00;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    width: 100%;
+    max-width: 600px;
+    animation: fadeIn 0.5s ease-in;
+    z-index: 10;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.panel h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    text-shadow: 0 0 10px #00ff00,
+             0 0 20px #00ff00,
+             0 0 40px #00ff00;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.buttons button {
+    padding: 15px;
+    background: transparent;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.buttons button:hover {
+    background: #00ff00;
+    color: #000;
+    box-shadow: 0 0 20px #00ff00,
+                0 0 40px #00ff00;
+    transform: scale(1.05);
+}
+
+.panel .contenido {
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    min-height: 100px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.btn-logout {
+    width: 100%;
+    padding: 12px;
+    background: #ff3333;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn-logout:hover {
+    background: #ff6666;
+    box-shadow: 0 5px 20px rgba(255, 51, 51, 0.4);
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 255, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00ff00;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00ff80;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .login-container,
+    .panel {
+        padding: 20px;
+    }
+
+    .login-container h1,
+    .panel h1 {
+        font-size: 18px;
+    }
+
+    .buttons {
+        grid-template-columns: 1fr;
+    }
+}
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}.panel {
+    animation: aparecer 0.8s ease-in-out;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}/* EFECTO DESBLOQUEO MATRIX */
+
+.flash {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #00ff00;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.animar-flash {
+    animation: flashEfecto 0.6s ease-out;
+}
+
+@keyframes flashEfecto {
+    0% { opacity: 0; }
+    20% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+.ocultar-login {
+    animation: desvanecer 0.5s forwards;
+}
+
+@keyframes desvanecer {
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}

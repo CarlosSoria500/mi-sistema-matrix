@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Privado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="flash" id="flash"></div>
+<canvas id="matrixCanvas"></canvas>
+
+<div class="login-container" id="loginBox">
+    <h1>ACCESO PRIVADO</h1>
+    
+    <form id="loginForm" onsubmit="entrar(event)">
+        <input type="text" placeholder="Usuario" id="user" required>
+        <span class="error" id="userError"></span>
+        
+        <input type="password" placeholder="Contraseña" id="pass" required>
+        <span class="error" id="passError"></span>
+        
+        <button type="submit">INGRESAR</button>
+    </form>
+</div>
+
+<div class="panel" id="panel" style="display: none;">
+    <h1 id="welcomeMessage">Bienvenido</h1>
+
+    <div class="buttons">
+        <button onclick="mostrarSeccion('videos')">VIDEOS</button>
+        <button onclick="mostrarSeccion('tutoriales')">TUTORIALES</button>
+        <button onclick="mostrarSeccion('documentos')">DOCUMENTOS</button>
+        <button onclick="mostrarSeccion('configuracion')">CONFIGURACIÓN</button>
+    </div>
+    
+    <div id="contenido" class="contenido"></div>
+    
+    <button onclick="cerrarSesion()" class="btn-logout">CERRAR SESIÓN</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
