@@ -171,4 +171,27 @@ setInterval(dibujarMatrix, 50);
 window.addEventListener("resize", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-});
+});// =========================
+// SUBIR ARCHIVO A SUPABASE
+// =========================
+
+async function subirArchivo() {
+    const archivo = document.getElementById("fileInput").files[0];
+
+    if (!archivo) {
+        alert("Selecciona un archivo primero");
+        return;
+    }
+
+    const { data, error } = await window.supabaseClient.storage
+        .from("archivos") // ← el nombre debe ser igual a tu bucket
+        .upload(archivo.name, archivo);
+
+    if (error) {
+        alert("Error al subir: " + error.message);
+        console.error(error);
+    } else {
+        alert("Archivo subido correctamente");
+        console.log(data);
+    }
+}
