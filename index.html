@@ -42,14 +42,15 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="script.js"></script>
 
 <script>
 const supabaseUrl = "https://xhqmjeqchjvqcokmzfws.supabase.co";
 const supabaseKey = "sb_publishable_N79DhezcZ5hkev2DkKXFtg_1UnH1PaO";
 
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+window.supabaseClient = window.supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+);
 </script>
 
-</body>
-</html>
+<script src="script.js"></script>
