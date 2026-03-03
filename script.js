@@ -92,7 +92,12 @@ function mostrarPanel(usuario) {
 // Mostrar sección
 function mostrarSeccion(seccion) {
     const contenido = document.getElementById('contenido');
-    contenido.innerHTML = contenidos[seccion] || '<p>Sección no disponible</p>';
+
+    if (seccion === "documentos") {
+        cargarArchivos();
+    } else {
+        contenido.innerHTML = contenidos[seccion] || '<p>Sección no disponible</p>';
+    }
 }
 
 // Cerrar sesión
@@ -194,4 +199,49 @@ async function subirArchivo() {
         alert("Archivo subido correctamente");
         console.log(data);
     }
+}// =========================
+// MOSTRAR ARCHIVOS
+// =========================
+
+async function cargarArchivos() {
+    const { data, error } = await window.supabaseClient
+        .storage
+        .from("archivos")
+        .list("", { limit: 100 });
+
+    const contenedor = document.getElementById("contenido");
+
+    if (error) {
+        contenedor.innerHTML = "<p>Error al cargar archivos</p>";
+        console.error(error);
+        return;
+    }
+
+    if (data.length === 0) {
+        contenedor.innerHTML = "<p>No hay archivos subidos.</p>";
+        return;
+    }
+
+    let html = "<h3>Archivos Subidos</h3><ul style='text-align:left;'>";
+
+    data.forEach(archivo => {
+        const urlPublica =
+            window.supabaseClient
+                .storage
+                .from("archivos")
+                .getPublicUrl(archivo.name).data.publicUrl;
+
+        html += `
+            <li>
+                ${archivo.name}
+                <br>
+                <a href="${urlPublica}" target="_blank">Descargar</a>
+            </li>
+            <br>
+        `;
+    });
+
+    html += "</ul>";
+
+    contenedor.innerHTML = html;
 }
